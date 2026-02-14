@@ -98,6 +98,27 @@ function App() {
   }, []);
 
   const [todolist, settodo] = useState([]);
+
+  // Load todos from localStorage on first render
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("todos");
+      if (stored) {
+        settodo(JSON.parse(stored));
+      }
+    } catch (err) {
+      console.error("Failed to load todos from localStorage:", err);
+    }
+  }, []);
+
+  // Persist todos to localStorage whenever they change
+  useEffect(() => {
+    try {
+      localStorage.setItem("todos", JSON.stringify(todolist));
+    } catch (err) {
+      console.error("Failed to save todos to localStorage:", err);
+    }
+  }, [todolist]);
   const [search, setSearch] = useState("");
 
   const onDelete = (todo) => {
