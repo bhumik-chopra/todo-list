@@ -6,6 +6,7 @@ import Footer from "./MYCOMPONENTS/Footer";
 import AddTodo from "./MYCOMPONENTS/AddTodo";
 import Home from "./MYCOMPONENTS/Home";
 import About from "./MYCOMPONENTS/About";
+import Landing from "./MYCOMPONENTS/Landing";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React, { useState, useEffect, useRef } from "react";
 
@@ -96,8 +97,7 @@ function App() {
     };
   }, []);
 
-  const [todolist, settodo] = useState([
-  ]);
+  const [todolist, settodo] = useState([]);
   const [search, setSearch] = useState("");
 
   const onDelete = (todo) => {
@@ -133,8 +133,9 @@ function App() {
             onSearchChange={setSearch}
           />
           <Routes>
+            <Route path="/" element={<Landing />} />
             <Route
-              path="/"
+              path="/home"
               element={
                 <Home
                   todolist={filteredTodos}
